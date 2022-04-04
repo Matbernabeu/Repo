@@ -1,0 +1,52 @@
+package Conceitos;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
+
+
+
+public class FiltroPessoas extends Pessoa {
+	
+	public FiltroPessoas(int idade, String nome, String cidade) {
+		super(idade, nome, cidade);
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public static void main(String[] args) {
+		
+		Pessoa p = new Pessoa(19,"Andres","Madrid");
+		Pessoa p2 = new Pessoa (20, "Silvio", " Madrid");
+		Pessoa p3 = new Pessoa (40, "Bruno", " ");
+		Pessoa p4 = new Pessoa( 0 , "Angel", "Barcelona");
+		Pessoa p5 = new Pessoa (38,"Maria", " " );
+		
+		
+		List <Pessoa> pessoa = Arrays.asList(p , p2 , p3 , p4 , p5);
+		pessoa.stream()
+		.filter(a -> a.idade <= 25)
+		.map ( a -> "Cidadãos selecionados! " + a.nome )
+		.forEach(System.out::println); }
+		
+
+		public String toString(){
+            String res;
+            res = "Nome: " + Optional.ofNullable(nome).orElse("Desconhecida ");
+            res += ". Cidade: " + Optional.ofNullable(cidade).orElse("Desconhecida");
+            Optional<Integer> opcAge = Optional.ofNullable(idade);
+            res += ". Idade "+ opcAge.map(Object::toString).orElse("Desconhecida");
+            return res;
+        }
+			
+	public boolean isMinorOf (int limit) {
+		return (Optional.ofNullable(idade).isPresent() && idade < limit);
+		
+	}
+	
+		
+		
+		}
+		
+	
