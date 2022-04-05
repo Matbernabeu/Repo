@@ -1,0 +1,65 @@
+package Conceitos;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
+import java.util.stream.Stream;
+
+public class Fichero {
+
+	public static void main(String[] args) throws IOException {
+		
+	
+		
+		File file = new File ("src/resources/fichero.txt");
+		Scanner scan = new Scanner(file);
+		
+		
+		List <Pessoa> people = new ArrayList(); 
+		
+	
+		while(scan.hasNextLine()) {
+			String linha = scan.nextLine();
+			String [] copia = linha.split(":");
+			
+			int age = 0;
+			
+			String name = copia[0];
+			String city = copia[1];
+			if (copia.length > 2) {
+				 age =Integer.valueOf(copia[2]);
+			}
+			
+			Pessoa pessoa = new Pessoa();
+			pessoa.setNome(name);
+			pessoa.setCidade(city);
+			pessoa.setIdade(age);
+			people.add(pessoa);
+			
+			
+			
+						
+			}
+		
+		people.stream()
+		.filter(a -> a.idade <= 25)
+		.map ( a -> "Cidadãos selecionados! " + a.nome )
+		.forEach(System.out::println); }
+		
+				 
+			
+					 			
+				}
+				 
+			 
+			
